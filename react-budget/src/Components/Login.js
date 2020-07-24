@@ -3,15 +3,16 @@ import Form from "../Styled-Components/Form"
 
 const Login = (props) => {
 
-    const [user, setUser] = useState({username: "", password: ""})
+    const [user, setUser] = useState({username: "", password: ""});
 
     const handleChange = event => {
         setUser({ ...user, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(user)
+        event.preventDefault();
+        console.log(user);
+        setUser({ username: "", password: "" });
     }
 
     return (
@@ -21,7 +22,7 @@ const Login = (props) => {
                 <input type="email" name="username" placeholder="email@test.com" value={user.username} onChange={event => handleChange(event)} required></input>
             </label>
             <label>Password
-                <input type="password" name="password" placeholder="Password" value={user.password} onChange={event => handleChange(event)} required></input>
+                <input type="password" name="password" placeholder="Password" minLength="6" value={user.password} onChange={event => handleChange(event)} required></input>
             </label>
             <button type="submit">Login</button>
         </Form>
