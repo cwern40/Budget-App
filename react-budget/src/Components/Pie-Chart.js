@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const Dashboard = (props) => {
+const PieChart = (props) => {
+
     return (
         <div>
 
@@ -8,4 +9,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default Dashboard;
+export default PieChart;
