@@ -4,7 +4,7 @@ const RevenueItem = (props) => {
 
     return (
         <div>
-
+            {props.item.name} {props.item.amount}
         </div>
     )
 }

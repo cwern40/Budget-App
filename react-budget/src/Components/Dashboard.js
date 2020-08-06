@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import {BrowserRouter, Router } from 'react-router-dom';
+import {BrowserRouter, Route } from 'react-router-dom';
 import Budget from './Budget';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
 
-    const [revenue, setRevenue] = useState([]);
+    const [revenue, setRevenue] = useState([{name: "job", amount: 1100.25}, {name: "stock", amount: 500.55}]);
     const [expenses, setExpenses] = useState([]);
-
+ 
     return (
         <div>
+            <h2>Dashboard</h2>
             <BrowserRouter>
-                <Router exact path="/" component={Budget} revenue={revenue} expenses={expenses}/>
+                <Route exact path="/" render={(props) => <Budget {...props} revenue={revenue} expenses={expenses} />}/>
             </BrowserRouter>
         </div>
     )
