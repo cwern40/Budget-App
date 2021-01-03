@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Form from "../Styled-Components/Form";
+import { FormContainer, Label, LoginTitle, Form, LoginInput } from '../Styled-Components/Form';
+import { Button } from '../Styled-Components/Button'
 import axios from 'axios';
 
 const Register = (props) => {
@@ -21,9 +22,9 @@ const Register = (props) => {
         event.preventDefault();
        axios.post(url, credentials)
         .then((res) => {
-            console.log(res);
             localStorage.setItem('token', res.data.token);
             props.setUser(res.data.user);
+            props.history.push('/');
         })
         .catch((err) => {
             console.log(err)
@@ -31,22 +32,22 @@ const Register = (props) => {
     }
 
     return (
-        <Form onSubmit={event => handleSubmit(event)}>
-            <h2>Register For An Account</h2>
-            <label>First Name
-                <input type="text" name="first_name" placeholder="John" value={user.first_name} onChange={event => handleChange(event)} required></input>
-            </label>
-            <label>Last Name
-                <input type="text" name="last_name" placeholder="Doe" value={user.last_name} onChange={event => handleChange(event)} required></input>
-            </label>
-            <label>Email
-                <input type="email" name="username" placeholder="email@test.com" value={user.username} onChange={event => handleChange(event)} required></input>
-            </label>
-            <label>Password
-                <input type="password" name="password" placeholder="Password" value={user.password} minLength="6" onChange={event => handleChange(event)} required></input>
-            </label>
-            <button type="submit">Register</button>
-        </Form>
+        <FormContainer>
+            <LoginTitle>Register For An Account</LoginTitle>
+            <Form onSubmit={event => handleSubmit(event)}>
+
+                    <LoginInput type="text" name="first_name" placeholder="First Name" value={user.first_name} onChange={event => handleChange(event)} required></LoginInput>
+
+                    <LoginInput type="text" name="last_name" placeholder="Last Name" value={user.last_name} onChange={event => handleChange(event)} required></LoginInput>
+
+                    <LoginInput type="email" name="username" placeholder="email@test.com" value={user.username} onChange={event => handleChange(event)} required></LoginInput>
+
+                    <LoginInput type="password" name="password" placeholder="Password" value={user.password} minLength="6" onChange={event => handleChange(event)} required></LoginInput>
+
+                <Button type="submit">Register</Button>
+            </Form>
+            <p>Already a member? <a href="/login">Login now</a></p>
+        </FormContainer>
     );
 }
 

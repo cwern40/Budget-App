@@ -2,6 +2,7 @@ import React from 'react';
 import ExpensesItem from './ExpensesItem';
 
 const Expenses = (props) => {
+    console.log('Expenses', props)
     
     return (
         <div>

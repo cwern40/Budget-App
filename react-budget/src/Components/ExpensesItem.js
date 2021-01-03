@@ -4,7 +4,7 @@ const ExpensesItem = (props) => {
 
     return (
         <div>
-            {props.item.name} {props.item.amount}
+            {props.item.expense_name} {props.item.expense_amount}
         </div>
     )
 }

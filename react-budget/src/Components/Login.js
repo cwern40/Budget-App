@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Form from "../Styled-Components/Form";
+import { FormContainer, Label, LoginTitle, Form, LoginInput } from '../Styled-Components/Form';
+import { Button } from '../Styled-Components/Button'
 import axios from 'axios';
 
 
 
 const Login = (props) => {
 
-    console.log("login", props)
     const [login, setUser] = useState({username: "", password: ""});
     const url = "https://budget-app-cw.herokuapp.com/api/users/login";
     const credentials = {
@@ -22,7 +22,6 @@ const Login = (props) => {
         event.preventDefault();
         axios.post(url, credentials)
             .then((res) => {
-                console.log(res);
                 localStorage.setItem('token', res.data.token);
                 props.setUser(res.data.user);
                 props.setBudgets(res.data.budgets);
@@ -35,16 +34,18 @@ const Login = (props) => {
     }
 
     return (
-        <Form onSubmit={(event) => handleSubmit(event)}>
-            <h2>Sign In To Your Account</h2>
-            <label>Email
-                <input type="email" name="username" placeholder="email@test.com" value={login.username} onChange={event => handleChange(event)} required></input>
-            </label>
-            <label>Password
-                <input type="password" name="password" placeholder="Password" minLength="6" value={login.password} onChange={event => handleChange(event)} required></input>
-            </label>
-            <button type="submit">Login</button>
-        </Form>
+        <FormContainer>
+            <LoginTitle>Sign In To Your Account</LoginTitle>
+            <Form onSubmit={(event) => handleSubmit(event)}>
+
+                    <LoginInput type="email" name="username" placeholder="email@test.com" value={login.username} onChange={event => handleChange(event)} required></LoginInput>
+
+                    <LoginInput type="password" name="password" placeholder="Password" minLength="6" value={login.password} onChange={event => handleChange(event)} required></LoginInput>
+
+                <Button type="submit">Login</Button>
+            </Form>
+            <p>Not a member? <a href="/register">Sign up now</a></p>
+        </FormContainer>
     );
 }
 
