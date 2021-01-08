@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import {BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { PageContainer, H2Title } from '../Styled-Components/General';
 import Budget from './Budget';
 import SelectBudget from './SelectBudget';
-import CreateBudget from './CreateBudget';
 
 const Dashboard = (props) => {
- 
+    console.log("Dashboard", props);
     return (
-        <div>
-            <h2>Dashboard</h2>
+        <PageContainer>
+            <H2Title>Dashboard</H2Title>
             <BrowserRouter>
                 <Switch>
-                    {props.budgets.map((budget, i) => (
-                        <Route exact path="/" render={(props) => <SelectBudget key={i} budget={budget} />} />
-                    ))}
+                    <Route exact path="/" render={() => (<SelectBudget {...props} budgets={props.budgets} user={props.user} />)} />
                     <Route exact path="/:id" component={Budget} />
-                    <Route exact path="/" component={CreateBudget} />
                     <Redirect from='*' to='/' />
                 </Switch>
             </BrowserRouter>
-        </div>
+        </PageContainer>
     )
 }
 

@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import BudgetItem from './BudgetItem';
+import CreateBudget from './CreateBudget';
+import { BudgetContainer, NoBudget, SelectBudgetContainer, ComponentHeader } from '../Styled-Components/General';
+
 
 const SelectBudget = (props) => {
-    console.log(props);
+    console.log("SelectBudget", props);
     return (
-        <div>
-            <Link to={`/${props.budget.id}`}>{props.budget.budget_name}</Link>
-        </div>
+        <SelectBudgetContainer>
+            <ComponentHeader>Select or Create a Budget</ComponentHeader>
+            <BudgetContainer>
+            {props.budgets.length !== 0 ? props.budgets.map((budget, i) => (
+                <BudgetItem key={i} budget={budget} />
+            )) : <NoBudget>You don't have any budgets to select so you'll have to create one</NoBudget>}
+            </BudgetContainer>
+            <CreateBudget user={props.user} />
+        </SelectBudgetContainer>
     )
 }
 

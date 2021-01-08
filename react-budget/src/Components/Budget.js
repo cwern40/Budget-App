@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Income from './Income';
 import Expenses from './Expenses';
+import PieChart from './Pie-Chart';
+import { ComponentHeader, BudgetInfoContainer, IncomeExpenseContainer, PieChartContainer } from '../Styled-Components/General';
 
 const Budget = (props) => {
     const [budgetInfo, setbudgetInfo] = useState({id: null, budget_name: "", savings_amount: 0});
@@ -13,7 +15,7 @@ const Budget = (props) => {
         authorization: localStorage.getItem('token'),
     }
 
-    useEffect(() => {
+    const refresh = () => {
         axios.get(url, { headers })
             .then((res) => {
                 console.log(res)
@@ -24,13 +26,25 @@ const Budget = (props) => {
             .catch((err) => {
                 console.log(err)
             })
+    }
+
+    useEffect(() => {
+        refresh()
     }, [])
 
+    console.log(budgetInfo);
     return (
         <div>
-            <h2>Budget</h2>
-            <Income income={budgetIncome} />
-            <Expenses expenses={budgetExpenses} />
+            <BudgetInfoContainer>
+            <ComponentHeader>{budgetInfo.budget_name}</ComponentHeader>
+                <PieChartContainer>
+                    <PieChart income={budgetIncome} expenses={budgetExpenses}/>
+                </PieChartContainer>
+                <IncomeExpenseContainer>
+                    <Income income={budgetIncome} />
+                    <Expenses expenses={budgetExpenses} />
+                </IncomeExpenseContainer>
+            </BudgetInfoContainer>
         </div>
     )
 }

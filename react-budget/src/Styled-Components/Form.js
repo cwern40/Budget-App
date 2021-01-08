@@ -19,11 +19,7 @@ const Label = styled.label`
     margin: 10px auto;
     padding-left: 20px;
 `
-const LoginTitle = styled.h2`
-    display: block;
-    width: 100%;
-    margin: 15px auto;
-`
+
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
@@ -32,7 +28,7 @@ const Form = styled.form`
     width: 100%;
 `
 
-const LoginInput = styled.input`
+const Input = styled.input`
     margin: 10px auto;
     border-radius: 5px;
     background: rgba(240, 240, 240);
@@ -41,10 +37,36 @@ const LoginInput = styled.input`
     text-align: center;
 `
 
+const HorizontalForm = styled.form`
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    padding-bottom: 30px;
+    width: 100%;
+    justify-content: center;
+`
+
+const HorixontalInput = styled.input`
+    margin: 10px;
+    border-radius: 5px;
+    background: rgba(240, 240, 240);
+    border: 1px;
+    padding: 5px 10px;
+    text-align: center;
+`
+
+const LargeFormTitle = styled.h2`
+    display: block;
+    width: 100%;
+    margin: 15px auto;
+`
+
 export {
     FormContainer,
     Label,
-    LoginTitle,
     Form,
-    LoginInput,
+    Input,
+    HorizontalForm,
+    HorixontalInput,
+    LargeFormTitle,
 };
