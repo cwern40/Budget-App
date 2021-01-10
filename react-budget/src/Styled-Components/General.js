@@ -87,7 +87,10 @@ const Message = styled.p.attrs(props => ({
 }))`
     color: ${props => props.color};
     width: 100%;
-    
+`
+
+const Container = styled.div`
+    width: 100%;
 `
 
 export {
@@ -105,4 +108,5 @@ export {
     IncomeExpenseContainer,
     PieChartContainer,
     Message,
+    Container,
 }

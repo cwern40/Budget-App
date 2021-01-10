@@ -3,7 +3,7 @@ import axios from 'axios';
 import Income from './Income';
 import Expenses from './Expenses';
 import PieChart from './Pie-Chart';
-import { ComponentHeader, BudgetInfoContainer, IncomeExpenseContainer, PieChartContainer } from '../Styled-Components/General';
+import { ComponentHeader, BudgetInfoContainer, IncomeExpenseContainer, PieChartContainer, Container } from '../Styled-Components/General';
 
 const Budget = (props) => {
     const [budgetInfo, setbudgetInfo] = useState({id: null, budget_name: "", savings_amount: 0});
@@ -41,8 +41,12 @@ const Budget = (props) => {
                     <PieChart income={budgetIncome} expenses={budgetExpenses}/>
                 </PieChartContainer>
                 <IncomeExpenseContainer>
-                    <Income income={budgetIncome} />
-                    <Expenses expenses={budgetExpenses} />
+                    <Container>
+                        <Income income={budgetIncome} />
+                    </Container>
+                    <Container>
+                        <Expenses expenses={budgetExpenses} />
+                    </Container>
                 </IncomeExpenseContainer>
             </BudgetInfoContainer>
         </div>
